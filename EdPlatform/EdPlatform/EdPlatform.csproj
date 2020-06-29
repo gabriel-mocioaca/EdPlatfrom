@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-EdPlatform-D2575214-79E3-4D0C-B5D1-32F6E2FB7495</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EdPlatform.ApplicationLogic\EdPlatform.ApplicationLogic.csproj" />
+    <ProjectReference Include="..\EdPlatform.EFDataAccess\EdPlatform.EFDataAccess.csproj" />
+  </ItemGroup>
+
+</Project>
