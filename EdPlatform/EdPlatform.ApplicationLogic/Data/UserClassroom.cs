@@ -8,7 +8,7 @@ namespace EdPlatform.ApplicationLogic.Data
   {
     public string UserId { get; set; }
     public string ClassroomId { get; set; }
-    public UserAssignment User { get; set; }
+    public ApplicationUser ApplicationUser { get; set; }
     public Classroom Classroom { get; set; }
   }
 }
