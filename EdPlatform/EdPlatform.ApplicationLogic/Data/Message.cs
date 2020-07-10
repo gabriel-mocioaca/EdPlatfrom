@@ -8,5 +8,8 @@ namespace EdPlatform.ApplicationLogic.Data
   {
     public string MessageId { get; set; }
     public string Text { get; set; }
+    public string Author { get; set; }
+
+    public ICollection<ClassroomMessage> ClassroomMessages { get; set; }
   }
 }

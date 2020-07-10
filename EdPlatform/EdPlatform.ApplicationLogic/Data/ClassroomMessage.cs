@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EdPlatform.ApplicationLogic.Data
 {
-  public class ClassoomMessage
+  public class ClassroomMessage
   {
     public string ClassroomId { get; set; }
     public string MessageId { get; set; }

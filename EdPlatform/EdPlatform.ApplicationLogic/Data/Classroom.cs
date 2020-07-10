@@ -9,5 +9,8 @@ namespace EdPlatform.ApplicationLogic.Data
     public string ClassroomId { get; set; }
     public string Name { get; set; }
 
+
+    public ICollection<UserClassroom> UserClassrooms { get; set; }
+    public ICollection<ClassroomMessage> ClassroomMessages { get; set; }
   }
 }
