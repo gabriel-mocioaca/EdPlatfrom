@@ -23,6 +23,7 @@ namespace EdPlatform.EFDataAccess
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      modelBuilder.Entity<ApplicationUser>().HasKey(t => t.UserId);
       modelBuilder.Entity<Assignment>().HasKey(t => t.AssignmentId);
       modelBuilder.Entity<Classroom>().HasKey(t => t.ClassroomId);
       modelBuilder.Entity<Message>().HasKey(t => t.MessageId);
