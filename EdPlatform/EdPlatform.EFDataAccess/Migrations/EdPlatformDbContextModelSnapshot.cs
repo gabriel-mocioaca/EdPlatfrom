@@ -49,6 +49,8 @@ namespace EdPlatform.EFDataAccess.Migrations
                     b.Property<string>("ClassroomId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("CreatorName");
+
                     b.Property<string>("Name");
 
                     b.HasKey("ClassroomId");
@@ -69,6 +71,19 @@ namespace EdPlatform.EFDataAccess.Migrations
                     b.ToTable("ClassroomMessages");
                 });
 
+            modelBuilder.Entity("EdPlatform.ApplicationLogic.Data.ClassroomStudents", b =>
+                {
+                    b.Property<string>("StudentId");
+
+                    b.Property<string>("ClassroomId");
+
+                    b.HasKey("StudentId", "ClassroomId");
+
+                    b.HasIndex("ClassroomId");
+
+                    b.ToTable("ClassroomStudents");
+                });
+
             modelBuilder.Entity("EdPlatform.ApplicationLogic.Data.Message", b =>
                 {
                     b.Property<string>("MessageId")
@@ -81,6 +96,20 @@ namespace EdPlatform.EFDataAccess.Migrations
                     b.HasKey("MessageId");
 
                     b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("EdPlatform.ApplicationLogic.Data.Student", b =>
+                {
+                    b.Property<string>("StudentId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Group");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("StudentId");
+
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("EdPlatform.ApplicationLogic.Data.UserAssignment", b =>
@@ -125,6 +154,19 @@ namespace EdPlatform.EFDataAccess.Migrations
                     b.HasOne("EdPlatform.ApplicationLogic.Data.Message", "Message")
                         .WithMany("ClassroomMessages")
                         .HasForeignKey("MessageId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("EdPlatform.ApplicationLogic.Data.ClassroomStudents", b =>
+                {
+                    b.HasOne("EdPlatform.ApplicationLogic.Data.Classroom", "Classroom")
+                        .WithMany("ClassroomStudents")
+                        .HasForeignKey("ClassroomId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EdPlatform.ApplicationLogic.Data.Student", "Student")
+                        .WithMany("ClassroomStudents")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
