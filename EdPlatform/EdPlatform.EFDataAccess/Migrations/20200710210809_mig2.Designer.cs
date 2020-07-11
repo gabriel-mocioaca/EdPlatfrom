@@ -3,14 +3,16 @@ using EdPlatform.EFDataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EdPlatform.EFDataAccess.Migrations
 {
     [DbContext(typeof(EdPlatformDbContext))]
-    partial class EdPlatformDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200710210809_mig2")]
+    partial class mig2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +50,6 @@ namespace EdPlatform.EFDataAccess.Migrations
                 {
                     b.Property<string>("ClassroomId")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CreatorName");
 
                     b.Property<string>("Name");
 

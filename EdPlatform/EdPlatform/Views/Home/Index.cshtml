@@ -1,8 +1,26 @@
-﻿@{
+﻿@model IEnumerable<ClassroomViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+<div class="row">
+  @foreach (var classroom in Model)
+  {
+    <div class="col-md-6" style="margin-bottom: 30px;">
+      <div class="card" style=" width: 80%; margin: 15px auto 15px; padding: 16px; height:99%">
+        <div class="container2" style="text-align:center">
+          <h5 class="card-title">@classroom.ClassroomName</h5>
+          <p class="card-subtitle">By @classroom.CreatorName</p>
+          <a asp-route-id="@classroom.ClassroomId" asp-controller="Classroom" asp-action="ShowClassroom"
+              class="btn btn-outline-info">Go to classroom</a>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+@*<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -91,4 +109,4 @@
             <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
         </ul>
     </div>
-</div>
+</div>*@

@@ -8,6 +8,8 @@ namespace EdPlatform.EFDataAccess
 {
   public class EdPlatformDbContext : DbContext
   {
+    public EdPlatformDbContext() { }
+
     public EdPlatformDbContext(DbContextOptions<EdPlatformDbContext> options)
       : base(options)
     {
@@ -16,6 +18,7 @@ namespace EdPlatform.EFDataAccess
     public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     public DbSet<Assignment> Assignments { get; set; }
     public DbSet<Classroom> Classrooms { get; set; }
+    public DbSet<Student> Students { get; set; }
     public DbSet<ClassroomMessage> ClassroomMessages { get; set; }
     public DbSet<Message> Messages { get; set; }
     public DbSet<UserAssignment> UserAssignments { get; set; }
@@ -39,6 +42,10 @@ namespace EdPlatform.EFDataAccess
       modelBuilder.Entity<UserClassroom>().HasKey(x => new { x.UserId, x.ClassroomId });
       modelBuilder.Entity<UserClassroom>().HasOne(us => us.ApplicationUser).WithMany(cl => cl.UserClassrooms).HasForeignKey(us => us.UserId);
       modelBuilder.Entity<UserClassroom>().HasOne(cl => cl.Classroom).WithMany(me => me.UserClassrooms).HasForeignKey(cl => cl.ClassroomId);
+
+      modelBuilder.Entity<ClassroomStudents>().HasKey(x => new { x.StudentId, x.ClassroomId });
+      modelBuilder.Entity<ClassroomStudents>().HasOne(su => su.Student).WithMany(cl => cl.ClassroomStudents).HasForeignKey(us => us.StudentId);
+      modelBuilder.Entity<ClassroomStudents>().HasOne(cl => cl.Classroom).WithMany(me => me.ClassroomStudents).HasForeignKey(cl => cl.ClassroomId);
 
       base.OnModelCreating(modelBuilder);
     }

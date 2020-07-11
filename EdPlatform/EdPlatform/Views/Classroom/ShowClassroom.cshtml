@@ -1,0 +1,18 @@
+﻿@model ClassroomViewModel
+@{
+    ViewData["Title"] = "ShowClassroom";
+}
+
+<h2>@Model.ClassroomName</h2>
+<h3>@Model.CreatorName</h3>
+
+@foreach (var message in Model.Messages) {
+<div class="row-md-2" style="margin-bottom: 4px;">
+  <div class="card" style=" width: 80%; margin: 4px auto 4px; padding: 4px; height:99%">
+    <div class="container2" style="text-align:left">
+      <h5 class="card-title">@message.Author</h5>
+      <p class="card-subtitle">@message.Text </p>
+    </div>
+  </div>
+</div>
+}
