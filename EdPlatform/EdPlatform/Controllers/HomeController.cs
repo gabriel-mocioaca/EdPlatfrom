@@ -5,14 +5,33 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EdPlatform.Models;
+using EdPlatform.ApplicationLogic.Data;
+using EdPlatform.ApplicationLogic.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace EdPlatform.Controllers
 {
   public class HomeController : Controller
   {
+    private readonly ClassroomService _classroomService;
+    private readonly UserManager<IdentityUser> _userManager;
+    public HomeController(ClassroomService classroomService, UserManager<IdentityUser> userManager)
+    {
+      _classroomService = classroomService;
+      _userManager = userManager;
+    }
+
     public IActionResult Index()
     {
-      return View();
+      string userId = _userManager.GetUserId(User).ToString();
+      IEnumerable<ClassroomViewModel> viewModel = _classroomService.GetClassrooms(userId).Select(s => new ClassroomViewModel
+      {
+        ClassroomId = s.ClassroomId,
+        ClassroomName = s.Name,
+        CreatorName = s.CreatorName,
+      }).ToList() ;
+
+      return View(viewModel);
     }
 
     public IActionResult About()

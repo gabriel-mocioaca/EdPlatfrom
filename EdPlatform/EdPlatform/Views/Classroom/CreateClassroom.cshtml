@@ -1,0 +1,31 @@
+﻿@model ClassroomViewModel
+@{
+  ViewData["Title"] = "CreateClassroom";
+}
+
+<h2>Create Classroom</h2>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row">
+  <form class="col-md-9" asp-controller="Classroom" asp-action="CreateClassroom" method="post">
+
+    <div class="form-group">
+      <label asp-for="ClassroomName"></label>
+      <input asp-for="ClassroomName" style="margin-left : 21px;" />
+      <span asp-validation-for="ClassroomName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="CreatorName"></label>
+      <input asp-for="CreatorName" style="margin-left : 30px;" />
+      <span asp-validation-for="CreatorName" class="text-danger"></span>
+    </div>
+    <div class="col-md-9">
+      <button type="submit" class="btn btn-outline-info">Add Classroom</button>
+      @if (!string.IsNullOrEmpty(ViewBag.message))
+      {
+        <span class="alert-secondary">@ViewBag.message</span>
+      }
+    </div>
+  </form>
+</div>
