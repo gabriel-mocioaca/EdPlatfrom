@@ -11,10 +11,12 @@ namespace EdPlatform.Controllers
   public class ClassroomController : Controller
   {
     private readonly ClassroomService _classroomService;
+    private readonly MessageService _messageService;
 
-    public ClassroomController(ClassroomService classroomService)
+    public ClassroomController(ClassroomService classroomService, MessageService messageService)
     {
       _classroomService = classroomService;
+      _messageService = messageService;
     }
 
     [HttpGet]
@@ -33,9 +35,8 @@ namespace EdPlatform.Controllers
         ClassroomId = classroom.ClassroomId,
         ClassroomName = classroom.Name,
         CreatorName = classroom.CreatorName,
+        Messages = _messageService.GetMessagesInClassroom(id),
       };
-
-      
 
       return View(viewModel);
     }

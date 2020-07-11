@@ -13,6 +13,10 @@ using EdPlatform.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using EdPlatform.ApplicationLogic.Data;
+using EdPlatform.ApplicationLogic.Abstractions;
+using EdPlatform.EFDataAccess.Repositories;
+using EdPlatform.ApplicationLogic.Services;
+using EdPlatform.EFDataAccess;
 
 namespace EdPlatform
 {
@@ -72,8 +76,20 @@ namespace EdPlatform
       services.AddDbContext<ApplicationDbContext>(options =>
           options.UseSqlServer(
               Configuration.GetConnectionString("DefaultConnection")));
+      services.AddDbContext<EdPlatformDbContext>(options =>
+          options.UseSqlServer(
+              Configuration.GetConnectionString("DefaultConnection")));
       services.AddDefaultIdentity<IdentityUser>()
           .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+      services.AddScoped<IClassroomRepository, ClassroomRepository>();
+      services.AddScoped<IAssignmentRepository, AssignmentRepository>();
+      services.AddScoped<IMessageRepository, MessageRepository>();
+      services.AddScoped<IStudentRepository, StudentRepository>();
+
+      services.AddScoped<ClassroomService>();
+      services.AddScoped<MessageService>();
 
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
     }
