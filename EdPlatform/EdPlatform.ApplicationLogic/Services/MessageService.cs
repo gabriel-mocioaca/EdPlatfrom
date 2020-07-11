@@ -16,6 +16,10 @@ namespace EdPlatform.ApplicationLogic.Services
 
     public IEnumerable<Message> GetMessagesInClassroom(string classroomId)
     {
+      if(classroomId == null)
+      {
+        throw new Exception("Null classroomId");
+      }
       var messages = _messageRepository.GetMessagesByClassroomId(classroomId);
       return messages;
     }
